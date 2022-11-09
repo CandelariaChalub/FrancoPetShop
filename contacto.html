@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+  
+  <title>Contacto-Franco PetShop</title>
+</head>
+
+<body>
+  <header>
+    <div class="hero">
+      <nav class="navbar navbar-expand-lg navbar-dark w-100">
+        <div class="container d-flex justify-content-between">
+          <a class="navbar-brand" href="./index.html"><img class="img-fluid imgcandy me-5"
+              src="./assets/img/francopetshop.png" target="blank" alt="logo"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOff"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" style="background-color: #2F255D;" tabindex="-1" aria-labelledby="offcanvasLeftLabel"
+          id="navbarOff">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel"></h5>
+            <button type="button" class="btn-close bg-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <ul class="navbar-nav w-100 ps-4 bg-negro offcanvas-body align-items-center">
+            <li class="nav-item">
+              <a class="nav-link fs-5 me-3 text-white fw-semibold" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5 me-3 text-white fw-semibold" href="./juguetes.html">Jugueteria</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5 me-3 text-white fw-semibold" href="./farmacia.html">Farmacia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5 me-3 text-white active fw-semibold" href="#">Contacto</a>
+            </li>
+          </ul>
+          </div>
+          <div class="ps-5 mt-3 mt-lg-0 gap-3 d-flex">
+            <button class="btn-nav invisible position-relative mx-1" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#fav" aria-controls="offcanvasRight">
+            <i class="bi bi-bag-heart"></i>
+            <span v-if="productosFav.length != 0"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{productosFav.length}}
+            <span class="visually-hidden">unread messages</span>
+            </span>
+            </button>
+            <button class="btn-nav mx-1 invisible position-relative" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#carrito" aria-controls="offcanvasRight">
+              <i class="bi bi-cart3"></i>
+              <span v-if="productosCarrito.length != 0"
+              class="position-absolute translate-middle top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{productosCarrito.length}}
+              <span class="visually-hidden">unread messages</span>
+              </span>
+              </button>
+              <i class="bi bi-person" @click="inicioDeUsuario"></i>
+
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container pt-5 pb-5" id="app">
+
+    <div class="container msg">
+      <div class="row align-items-center justify-content-center">
+        <div v-on:submit.prevent class="col col-lg-5">
+
+          <div class="mb-3">
+            <label for="name" class="form-label fs-5 text-dark">Nombre y apellido:</label>
+            <input v-model="nombre" type="text" class="form-control rounded-0" id="name" placeholder="nombre y apellido"/>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label pt-4 fs-5 text-dark">Email:</label>
+            <input v-model="email" type="text" class="form-control rounded-0" id="email" placeholder="email"/>
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label pt-4 fs-5 text-dark">Teléfono:</label>
+            <input v-model="telefono" type="text" class="form-control rounded-0" id="telefono" placeholder="teléfono"/>
+          </div>
+          <div class="mb-3">
+            <label for="nombreMascota" class="form-label pt-4 fs-5 text-dark">Nombre de tu mascota:</label>
+            <input v-model="nombreMascota" type="text" class="form-control rounded-0" id="nombre de tu mascota" placeholder="nombre de tu mascota"/>
+          </div>
+          <div class="d-flex gap-5">
+              <div class="form-check ">
+                <input class="form-check-input" type="checkbox" value="" id="perro">
+                <label class="form-check-label text-dark" for="perro">
+                  Perro
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="gato">
+                <label class="form-check-label text-dark" for="gato">
+                  Gato
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="otro">
+                <label class="form-check-label text-dark" for="otro">
+                  Otro
+                </label>
+              </div>
+          </div>
+          <div class="mb-3">
+            <label for="msgg" class="form-label pt-4 fs-5 text-dark">Mensaje:</label>
+            <input v-model="mensaje" type="text" class="form-control msg1 pb-5 rounded-0" id="msgg" placeholder="mensaje"/>
+          </div>
+          <div class="mb-3 d-flex justify-content-center">
+            <button @click="mensajeDeAviso()" class="btn text-light rounded-2" style="background-color: #2F255D">
+              Enviar </button>
+          </div>
+        </div>
+        <div class="col col-lg-5 mb-5">
+          <img class="imgperrocontact" src="./assets/img/fotocontact.webp" alt="">
+          <img class="imgperrocontact" src="./assets/img/fotocontact2.webp" alt="">
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer class="footer-section">
+    <div class="container">
+
+        <div class="footer-content pt-5 pb-5">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 mb-50">
+                    <div class="footer-widget">
+                        <div class="footer-logo">
+                            <a href="index.html"><img src="./assets/img/francopetshop.png" class="img-fluid" alt="logo"></a>
+                        </div>
+                        <div class="footer-text">
+                            <p class="text-white mt-0 pt-0 fs-6">Tu petshop de confianza.</p>
+                        </div>
+                        <div class="footer-social-icon">
+                            <h4 class="text-white mt-4 pt-4 mb-2">Siguenos</h4>
+                            <a href="https://api.whatsapp.com/" target="_blank"><i class="bi bi-whatsapp iconoFooter"></i></a>
+                            <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram iconoFooter"></i></a>
+                            <a href="https://www.twitter.com/" target="_blank"><i class="bi bi-twitter iconoFooter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                    <div class="footer-widget">
+                        <div class="footer-widget-heading ">
+                            <h3>Links utiles</h3>
+                        </div>
+                        <ul>
+                            <li><a href="./index.html">Home</a></li>
+                            <li><a href="./juguetes.html">Jugueteria</a></li>
+                            <li><a href="./farmacia.html">Farmacia</a></li>
+                            <li><a href="./contacto.html">Contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                    <div class="footer-widget">
+                        <div class="footer-widget-heading">
+                            <h3>Contacto</h3>
+                        </div>
+                        <div class="footer-text mb-25">
+                          <ul>
+                            <li><a href="#">+54 9 11 3158-7598</li>
+                            <li><a href="#">Rio de Janeiro 300, CABA</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="./assets/script.js"></script>
+</body>
+</html>

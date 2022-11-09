@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+  <title>Franco PetShop</title>
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <div class="hero">
+        <nav class="navbar navbar-expand-lg navbar-dark w-100">
+          <div class="container d-flex justify-content-between">
+            <a class="navbar-brand" href="./index.html"><img class="img-fluid imgcandy me-5"
+                src="./assets/img/francopetshop.png" target="blank" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOff"
+              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" style="background-color: #2F255D;" tabindex="-1" aria-labelledby="offcanvasLeftLabel"
+              id="navbarOff">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel"></h5>
+                <button type="button" class="btn-close bg-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <ul class="navbar-nav w-100 ps-4 bg-negro offcanvas-body align-items-center">
+                <li class="nav-item">
+                  <a class="nav-link fs-5 me-3 text-white active fw-semibold" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fs-5 me-3 text-white fw-semibold" href="./juguetes.html">Jugueteria</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fs-5 me-3 text-white fw-semibold" href="./farmacia.html">Farmacia</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link fs-5 me-3 text-white fw-semibold" href="./contacto.html">Contacto</a>
+                </li>
+              </ul>
+            </div>
+            <div class="ps-5 mt-3 mt-lg-0 gap-3 d-flex">
+              <button class="btn-nav invisible position-relative mx-1" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#fav" aria-controls="offcanvasRight">
+                <i class="bi bi-bag-heart"></i>
+                <span v-if="productosFav.length != 0"
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{productosFav.length}}
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+              <button class="btn-nav mx-1 invisible position-relative" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#carrito" aria-controls="offcanvasRight">
+                <i class="bi bi-cart3"></i>
+                <span v-if="productosCarrito.length != 0"
+                  class="position-absolute translate-middle top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{productosCarrito.length}}
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+              <i class="bi bi-person" @click="inicioDeUsuario"></i>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+    <main class="w-100">
+      <div class="container bg-white" id="mainContainer">
+        <div id="carouselExampleInterval" class="carousel slide d-none d-md-block" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+              <img src="./assets/img/1.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="./assets/img/2.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="./assets/img/3.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="./assets/img/4.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="./assets/img/5.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="./assets/img/6.png" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+  
+
+          <section class="w-100 mt-5 pt-5 pe-5 ps-5">
+            <div class="d-flex flex-wrap justify-content-between">
+              <div><a href="./juguetes.html">
+                <img src="./assets/img/ave.webp" alt="">
+                <div class="d-flex align-items-center justify-content-center mt-3">
+                  <p class="fw-semibold" style="color: #2F255D;">AVES</p>
+                </div>
+              </a>
+              </div>
+              <div><a href="./juguetes.html">
+                <img src="./assets/img/peces.webp" alt="" >
+                <div class="d-flex align-items-center justify-content-center mt-3">
+                  <p class="fw-semibold" style="color: #2F255D;">PECES</p>
+                </div>
+              </a>
+              </div>
+              <div><a href="./juguetes.html">
+                <img src="./assets/img/conejo.webp" alt="">
+                <div class="d-flex align-items-center justify-content-center mt-3">
+                  <p class="fw-semibold" style="color: #2F255D;">ROEDORES</p>
+                </div>
+              </a>
+              </div>
+              <div><a href="./juguetes.html">
+                <img src="./assets/img/reptil.webp" alt="">
+                <div class="d-flex align-items-center justify-content-center mt-3">
+                  <p class="fw-semibold" style="color: #2F255D;">REPTILES</p>
+                </div>
+              </a>
+              </div>
+              <div><a href="./juguetes.html">
+                <img src="./assets/img/perro.webp" alt="">
+                <div class="d-flex align-items-center justify-content-center mt-3">
+                  <p class="fw-semibold" style="color: #2F255D;">PERROS</p>
+                </div>
+              </a>
+              </div>
+              <div><a href="./juguetes.html">
+                <img src="./assets/img/gato.webp" alt="">
+                <div class="d-flex align-items-center justify-content-center mt-3">
+                  <p class="fw-semibold" style="color: #2F255D;">GATOS</p>
+                </div>
+              </a>
+              </div>
+            </div>
+          </section>
+          
+          <h4></h4>
+          <h4 class="text-center mb-5 mt-5 pt-5">Algunos de nuestros clientes</h4>
+          <div class="gallery m-auto">
+            <figure class="imageRoll">
+              <i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i>
+                                                                                                                                    </i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i>
+              <figcaption>Perrita: <strong>Marta</strong></figcaption>
+            </figure>
+    
+            <figure class="imageRoll">
+              <i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i>
+                                                                                                                                    </i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i>
+              <figcaption>Gatito: <strong>Nico</strong></figcaption>
+            </figure>
+    
+            <figure class="imageRoll">
+              <i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i>
+                                                                                                                                    </i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i>
+              <figcaption>Perrito: <strong>Facu</strong></figcaption>
+            </figure>
+    
+            <figure class="imageRoll">
+              <i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i>
+                                                                                                                                    </i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i>
+              <figcaption>Gatito: <strong>Michino</strong></figcaption>
+            </figure>
+    
+            <figure class="imageRoll">
+              <i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i>
+                                                                                                                                    </i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i>
+              <figcaption>Perrito: <strong>Ale</strong></figcaption>
+            </figure>
+    
+            <figure class="imageRoll">
+              <i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i><i>
+                                                                                                                                    </i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i></i>
+              <figcaption>Gatito: <strong>Salem</strong></figcaption>
+            </figure>
+          </div>
+
+
+        <div class=" w-100 d-flex flex-column flex-wrap flex-lg-row" id="textHome">
+            <div class="d-flex flex-md-row flex-column align-items-center justify-content-evenly w-100 mt-5">
+              <div class="mx-3">
+                <img src="assets/img/gatitotierno.jpg" style="width: 25rem;" alt="">
+              </div>
+              <div class="w-50">
+                <h4>Quienes somos</h4>
+                <p class="mb-5 me-4">Somos Franco Pet Shop, un negocio creado con cariño y amor a los animales. Nos dedicamos a
+                  ofrecerles a sus dueños todo para sus mascotas sean felices.</p>
+              </div>
+            </div>
+            <div class="d-flex flex-md-row flex-column align-items-center justify-content-evenly w-100 mt-5">
+              <div class="w-50">
+                <h4 class="ms-4">Nuestra visión</h4>
+                <p class="mb-5 ms-4">Las mascotas son nuestra pasión. Trabajamos todos los días para mejorar su calidad de vida, como así también la relación con sus dueños mediante el traspaso de información útil y la recomendación de productos.</p>
+              </div>
+              <div class="mx-3">
+                <img src="./assets/img/perritotierno.PNG" style="width: 25rem;" alt="">
+              </div>
+            </div>
+            <div class="d-flex flex-md-row  flex-column align-items-center justify-content-evenly w-100 mt-5">
+              <div class="mx-3">
+                <img src="./assets/img/gatitotierno2.webp" style="width: 25rem;" alt="">
+              </div>
+              <div class="w-50">
+                <h4>Nuestra misión</h4>
+                <p class="mt-2 me-4">Lograr que nuestra comunidad comparta la misma pasión que nosotros por las mascotas y, de
+                  esta
+                  forma, seguir fomentando su cuidado. Continuar brindando la mejor atención por medio de personal
+                  capacitado
+                  para informar y cubrir las necesidades del cliente y su mascota con productos de primera calidad.</p>
+              </div>
+            </div>
+            <div class="d-flex flex-md-row flex-column align-items-center justify-content-evenly w-100 mt-5">
+              <div class="w-50">
+                <h4 class="ms-4">Nuestra recomendación</h4>
+                <p class="mt-2 ms-4">En la post-venta contamos con el respaldo para cubrir con todas las necesidades y
+                  solucionar
+                  cualquier inconveniente después de la compra de cualquier producto.</p>
+                <p class="mt-1 ms-4">Por todas estas razones, a la hora de buscar alimento, atención y servicio, no des más
+                  vueltas: vení a Franco Pet Shop.</p>
+              </div>
+              <div class=" mx-3 d-flex flex-column align-items-center">
+                <img src="./assets/img/perritotierno2.webp" style="width: 25rem;" alt="">
+              </div>
+            </div>
+
+
+          <div class=" w-100 text-center mt-5">
+            <h5 class="mb-4 fs-4">¿Donde encontrarnos?</h5>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d690.3140042276274!2d-58.430840321885796!3d-34.61161280333558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca682014d7ef%3A0x1be48d35a307f7d!2sR%C3%ADo%20de%20Janeiro%20330%2C%20C1405CCD%20CABA!5e0!3m2!1ses-419!2sar!4v1657505058396!5m2!1ses-419!2sar"
+              width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" class="mb-3"></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-content pt-5 pb-5">
+          <div class="row">
+              <div class="col-xl-4 col-lg-4 mb-50">
+                  <div class="footer-widget">
+                      <div class="footer-logo">
+                          <a href="index.html"><img src="./assets/img/francopetshop.png" class="img-fluid" alt="logo"></a>
+                      </div>
+                      <div class="footer-text">
+                          <p class="text-white mt-0 pt-0 fs-6">Tu petshop de confianza.</p>
+                      </div>
+                      <div class="footer-social-icon">
+                          <h4 class="text-white mt-4 pt-4 mb-2">Siguenos</h4>
+                          <a href="https://api.whatsapp.com/" target="_blank"><i class="bi bi-whatsapp iconoFooter"></i></a>
+                          <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram iconoFooter"></i></a>
+                          <a href="https://www.twitter.com/" target="_blank"><i class="bi bi-twitter iconoFooter"></i></a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                  <div class="footer-widget">
+                      <div class="footer-widget-heading ">
+                          <h3>Links utiles</h3>
+                      </div>
+                      <ul>
+                          <li><a href="./index.html">Home</a></li>
+                          <li><a href="./juguetes.html">Jugueteria</a></li>
+                          <li><a href="./farmacia.html">Farmacia</a></li>
+                          <li><a href="./contacto.html">Contacto</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                  <div class="footer-widget">
+                      <div class="footer-widget-heading">
+                          <h3>Contacto</h3>
+                      </div>
+                      <div class="footer-text mb-25">
+                        <ul>
+                          <li><a href="#">+54 9 11 3158-7598</li>
+                          <li><a href="#">Rio de Janeiro 300, CABA</a></li>
+                      </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="./assets/script.js"></script>
+</body>
+</html>
