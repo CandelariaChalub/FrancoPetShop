@@ -104,7 +104,7 @@
                 v-if="product.stock<5">Ultimas unidades!</span>
             <img :src="product.imagen" class="card-img-top h-100 me-2" alt="...">
             <div class="card-body">
-              <h5 class="card-title text-uppercase" style="height: 50px;" >{{ product.nombre }}</h5>
+              <h5 class="card-title text-uppercase" style="height: 50px;" >{{ product.producto }}</h5>
               <p class="card-text fw-semibold" style="height: 20px;">{{moneyFormat.format(product.precio)}}</p>
               <div class="d-flex justify-content-between">
                 <button class="badge btn btn-primary" @click="agregarItemCarr(product)">{{productoCarrId.includes(product._id)?'Eliminar':'Agregar'}}</button>
@@ -137,7 +137,7 @@
                 <span><span class="fw-bold"> Precio: </span> {{moneyFormat.format(product.precio)}}</span>
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <button type="button" @click="restar(product, $event)" class="btn btn-light text-danger fs-4">-</button>
-                  <button type="button" class="btn btn-light" disabled>{{product.cantidad}}</button>
+                  <button type="button" class="btn btn-light" disabled>{{product.disponibles}}</button>
                   <button type="button" @click="sumar(product)" class="btn btn-light text-success fs-4">+</button>
                 </div>
               </div>
@@ -171,7 +171,7 @@
                 <img :src="product.imagen" class="w-100" alt="">
               </div>
               <div class="w-75 d-flex flex-column justify-content-between gap-2">
-                <h6>{{product.nombre}}</h6>
+                <h6>{{product.producto}}</h6>
               </div>
             </div>
           </div>
